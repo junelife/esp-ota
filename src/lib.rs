@@ -238,6 +238,9 @@ impl CompletedOtaUpdate {
     /// (except for WiFi, BT, UART0, SPI1, and legacy timers) are not reset.
     pub fn restart(self) -> ! {
         unsafe { esp_restart() }
+
+        // NOTE: this was generating a warning that it was unreachable code
+        // unreachable!("esp_restart returned");
     }
 
     /// Returns a raw pointer to the partition that the new app was written to.
